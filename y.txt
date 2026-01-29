@@ -1,1 +1,44 @@
-print("hello world")
+import json
+
+class BankAccount:
+    def __init__(self, acc_no, name, balance=0):
+        self.acc_no = acc_no
+        self.name = name
+        self.balance = balance
+
+    def to_dict(self):
+        return {
+            "acc_no": self.acc_no,
+            "name": self.name,
+            "balance": self.balance
+        }
+
+
+class Bank:
+    def __init__(self, filename="accounts.json"):
+        self.filename = filename
+        self.accounts = {}
+        self.load_data()
+
+    def create_account(self, acc_no, name, balance):
+        if acc_no in self.accounts:
+            print("❌ Account already exists")
+            return
+        self.accounts[acc_no] = BankAccount(acc_no, name, balance)
+        self.save_data()
+        print("✅ Account created successfully")
+
+    def deposit(self, acc_no, amount):
+        if acc_no not in self.accounts:
+            print("❌ Account not found")
+            return
+        self.accounts[acc_no].balance += amount
+        self.save_data()
+        print("💰 Amount deposited")
+
+    def withdraw(self, acc_no, amount):
+        if acc_no not in self.accounts:
+            print("❌ Account not found")
+            return
+        if self.accounts[acc_no].balance < amount:
+            prin
