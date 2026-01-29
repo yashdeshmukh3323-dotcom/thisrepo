@@ -1,1 +1,92 @@
-print("hello world")
+import json
+
+class BankAccount:
+    def __init__(self, acc_no, name, balance=0):
+        self.acc_no = acc_no
+        self.name = name
+        self.balance = balance
+
+    def to_dict(self):
+        return {
+            "acc_no": self.acc_no,
+            "name": self.name,
+            "balance": self.balance
+        }
+
+
+class Bank:
+    def __init__(self, filename="accounts.json"):
+        self.filename = filename
+        self.accounts = {}
+        self.load_data()
+
+    def create_account(self, acc_no, name, balance):
+        if acc_no in self.accounts:
+            print("❌ Account already exists")
+            return
+        self.accounts[acc_no] = BankAccount(acc_no, name, balance)
+        self.save_data()
+        print("✅ Account created successfully")
+
+    def deposit(self, acc_no, amount):
+        if acc_no not in self.accounts:
+            print("❌ Account not found")
+            return
+        self.accounts[acc_no].balance += amount
+        self.save_data()
+        print("💰 Amount deposited")
+
+    def withdraw(self, acc_no, amount):
+        if acc_no not in self.accounts:
+            print("❌ Account not found")
+            return
+        if self.accounts[acc_no].balance < amount:
+            print("⚠️ Insufficient balance")
+            return
+        self.accounts[acc_no].balance -= amount
+        self.save_data()
+        print("💸 Amount withdrawn")
+
+    def check_balance(self, acc_no):
+            elif choice == "3":
+                acc_no = input("Account Number: ")
+
+                print("👋 Thank you! Exiting...")
+
+                print("❌ Invalid choice")
+
+        except ValueError:
+            print("⚠️ Please enter valid numeric values")
+
+    main()
+if __name__ == "__main__":
+
+            else:
+                break
+            elif choice == "5":
+                bank.check_balance(acc_no)
+
+            elif choice == "4":
+                amount = float(input("Withdraw Amount: "))
+                bank.withdraw(acc_no, amount)
+                acc_no = input("Account Number: ")
+        if acc_no not in self.accounts:
+                bank.deposit(acc_no, amount)
+
+            print("❌ Account not found")
+                acc_no = input("Account Number: ")
+                amount = float(input("Deposit Amount: "))
+            return
+
+            elif choice == "2":
+        acc = self.accounts[acc_no]
+        print(f"👤 Name: {acc.name}")
+                balance = float(input("Initial Balance: "))
+                bank.create_account(acc_no, name, balance)
+                acc_no = input("Account Number: ")
+                name = input("Account Holder Name: ")
+        print(f"💰 Balance: {acc.balance}")
+
+    def save_data(self):
+            if choice == "1":
+
